@@ -1,0 +1,18 @@
+
+public class Bottle {
+	private <T> content;
+	
+	public Bottle() {}
+	
+	public boolean isEmpty() {
+		
+	}
+	
+	public void fill(content Drink) {
+		
+	}
+	
+	public <Drink> empty(){
+		
+	}
+}

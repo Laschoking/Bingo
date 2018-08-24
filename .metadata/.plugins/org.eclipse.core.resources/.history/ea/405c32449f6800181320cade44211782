@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+
+public class  Library {
+	ArrayList<Book> bookList;
+	ArrayList<Book> authorBooks;
+
+  public Library(){
+		bookList = new  ArrayList<Book>();
+	 }
+
+  public void sortedInsertion(Book newBook) {
+	  bookList.add(newBook);
+	  Collections.sort(bookList);
+	  
+  }
+  public Book searchForIsbn(String isbn) {
+	  int index = Collections.binarySearch(bookList,new Book(isbn));
+	  if (index >= 0)return bookList.get(index);
+	  else return null;
+	  
+  }
+  public Collection<Book> searchForAuthor(String author) {
+	 authorBooks = new ArrayList<Book>();
+	 int index = 0; 
+	 for(Book b : bookList){
+		  if (b.getAuthor().equals(author)) {
+			 authorBooks.add(bookList.get(index));
+		 }
+		 index++;			 
+		 
+	 }
+	 //Aufgabenstellung besagt return type ist array, aber keine Größe bekannt!!!!!!!!!!!
+	 return authorBooks;
+  }
+}

@@ -1,0 +1,24 @@
+
+public class Bottle <T>{
+	private T content;
+	public boolean fillStatus = false;
+	
+	public Bottle() {}
+	
+	public boolean isEmpty() {
+		return fillStatus;
+		
+	}
+	
+	public void fill(T content) {
+		fillStatus = true;
+		
+		
+	}
+	
+	public T empty(){
+		fillStatus = false;
+		return content;
+		
+	}
+}

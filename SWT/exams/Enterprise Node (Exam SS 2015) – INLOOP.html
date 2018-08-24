@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enterprise Node (Exam SS 2015) – INLOOP</title>
+  <style class="anchorjs"></style><link rel="stylesheet" type="text/css" href="Enterprise%20Node%20(Exam%20SS%202015)%20%E2%80%93%20INLOOP_files/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="Enterprise%20Node%20(Exam%20SS%202015)%20%E2%80%93%20INLOOP_files/bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="Enterprise%20Node%20(Exam%20SS%202015)%20%E2%80%93%20INLOOP_files/inloop.css">
+  
+  <link rel="stylesheet" type="text/css" href="Enterprise%20Node%20(Exam%20SS%202015)%20%E2%80%93%20INLOOP_files/syntax.css">
+
+</head>
+<body class="autolink">
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://inloop.inf.tu-dresden.de/">INLOOP</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        
+
+  <li><a href="https://inloop.inf.tu-dresden.de/">Home</a></li>
+  <li><a href="https://inloop.inf.tu-dresden.de/account/profile/">My Profile</a></li>
+  
+  <li><a id="logout-link" href="https://inloop.inf.tu-dresden.de/logout/">Logout</a></li>
+
+
+      </ul>
+    </div>
+    
+
+<form id="logout-form" method="post" action="/logout/">
+  <input name="csrfmiddlewaretoken" value="VsRMoVMadrxK6Uhlh5ILBAiaWYcFCAIkTGGNQUGMLNSrV5AM0g535XMFOQzfeHGV" type="hidden">
+</form>
+<script src="Enterprise%20Node%20(Exam%20SS%202015)%20%E2%80%93%20INLOOP_files/logout.js"></script>
+
+
+  </div>
+</nav>
+
+<div class="container">
+
+
+
+
+
+<ol class="breadcrumb">
+  <li><a href="https://inloop.inf.tu-dresden.de/tasks/">Tasks</a></li>
+  <li><a href="https://inloop.inf.tu-dresden.de/tasks/category/exam/">Exam</a></li>
+  <li class="active">Enterprise Node (Exam SS 2015)</li>
+</ol>
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active">
+    <a href="https://inloop.inf.tu-dresden.de/tasks/enterprise-node/">Description</a>
+  </li>
+  <li role="presentation">
+    <a href="https://inloop.inf.tu-dresden.de/solutions/enterprise-node/upload">Manual upload</a>
+  </li>
+  <li role="presentation">
+    <a href="https://inloop.inf.tu-dresden.de/solutions/enterprise-node/">Your solutions</a>
+  </li>
+</ul>
+
+<div class="static-tab-content">
+
+<h1>Enterprise Node (Exam SS 2015)</h1>
+<p>In this task, we are modeling the structure of enterprises with trees that consist of <code>EnterpriseNode</code>s. Possible node types within the tree are <code>AbstractEnterpriseUnit</code>s as well as actual people within the enterprise (<code>StaffMember</code>).</p>
+<p>The organizational units of enterprises are structured 
+hierarchically: Holdings consist of companies, companies consist of 
+divisions and divisions are separated into teams. The former three are <code>AbstractUnit</code>s and can be assigned direct child nodes in the tree structure via <code>add()</code>. The method <code>remove()</code> accordingly removes a given direct child node. Both methods return <code>true</code>
+ if and only if they were supposed to actually perform their operation. 
+For example, when trying to add a node that is already a direct child 
+node, <code>add()</code> should return <code>false</code> and not add the node again.</p>
+<p>At another level of the enterprise structure, there are teams as the fundamental enterprise units. Each team is led by a single <code>StaffMember</code>, the <code>teamLeader</code>. Additionally, the class <code>StaffMember</code> keeps track of the <code>directSubordinates</code> of the respective person. The method <code>addDirectSubordinate()</code> and <code>removeDirectSubordinate()</code> work analogous to <code>AbstractUnit</code>‘s <code>add()</code> and <code>remove()</code>.</p>
+<p><code>StaffMember</code> objects can be compared to other objects of their kind by calling <code>compareTo()</code>. This method implements the behavior defined by the interface <code>java.lang.Comparable&lt;T&gt;</code> regarding the alphabetic order of the compared staff members’ names. Implementing this interface makes the class <code>StaffMember</code> more flexible allowing different data structures to store and manage its objects.</p>
+<p>To iterate over the whole enterprise structure, we define an interface <code>EnterpriseNodeIterator</code> which extends the interface <code>java.util.Iterator&lt;T&gt;</code> by restricting the possible values of the type parameter <code>T</code> to implementations of <code>EnterpriseNode</code>. Apart from that, an <code>EnterpriseNodeIterator</code>‘s methods <code>hasNext()</code> and <code>next()</code> behave as defined by <code>Iterator&lt;T&gt;</code> (see <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html">its documentation in the Java API Documentation</a>).</p>
+<p>We want to focus on the <code>StaffMemberIterator</code> as one concrete iterator for the enterprise structure. Its constructor is given a <code>Set</code> of staff members (<code>directSubordinates</code>) and additionally determines all staff members below these <code>directSubordinates</code> recursively (<code>findSubordinatesRecursively()</code>). Eventually, the resulting set of staff members (<code>allMembers</code>)
+ is sorted alphabetically by the name of the staff members. Afterwards, 
+the iterator methods mentioned above must be able to iterate over all of
+ the directly and indirectly given staff members in order.</p>
+<h2 id="class-diagram">Class Diagram<a class="anchorjs-link " href="#class-diagram" aria-label="Anchor link for: class diagram" data-anchorjs-icon="" style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<p><img alt="Class Diagram" src="Enterprise%20Node%20(Exam%20SS%202015)%20%E2%80%93%20INLOOP_files/EnterpriseNode_ClassDiagram.png"></p>
+<h2 id="task">Task<a class="anchorjs-link " href="#task" aria-label="Anchor link for: task" data-anchorjs-icon="" style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<p>Create the given interfaces and implement all of the classes above!</p>
+<h2 id="hints">Hints<a class="anchorjs-link " href="#hints" aria-label="Anchor link for: hints" data-anchorjs-icon="" style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<ul>
+<li>The most important erroneous parameter values must be handled properly. Therefore, the parameter value <code>null</code> should result in a <code>NullPointerException</code> (where it makes sense) while others like empty <code>String</code>s should cause an <code>IllegalArgumentException</code>.</li>
+</ul>
+<h2 id="resources">Resources<a class="anchorjs-link " href="#resources" aria-label="Anchor link for: resources" data-anchorjs-icon="" style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<ul>
+<li><a href="https://inloop.inf.tu-dresden.de/tasks/enterprise-node/attachments/EnterpriseNode_tests.zip">JUnit tests</a></li>
+<li><a href="https://inloop.inf.tu-dresden.de/tasks/enterprise-node/attachments/st_exam_ss15.pdf">Related exam task</a></li>
+</ul>
+
+</div>
+
+
+</div>
+
+<footer class="footer">
+  <div class="container clearfix">
+    <ul class="list-inline footer-left">
+      <li class="text-muted">
+        © 2018 <a href="https://github.com/st-tu-dresden/inloop">@st-tu-dresden</a>
+      </li>
+    </ul>
+    <ul class="list-inline footer-right">
+
+      <li><a href="https://inloop.inf.tu-dresden.de/about/help/">Help</a></li>
+
+      <li><a href="https://inloop.inf.tu-dresden.de/about/imprint/">Imprint</a></li>
+
+    </ul>
+  </div>
+</footer>
+
+<script src="Enterprise%20Node%20(Exam%20SS%202015)%20%E2%80%93%20INLOOP_files/jquery.js"></script>
+<script src="Enterprise%20Node%20(Exam%20SS%202015)%20%E2%80%93%20INLOOP_files/bootstrap.js"></script>
+
+<script src="Enterprise%20Node%20(Exam%20SS%202015)%20%E2%80%93%20INLOOP_files/prism.js"></script>
+<script src="Enterprise%20Node%20(Exam%20SS%202015)%20%E2%80%93%20INLOOP_files/prism-java.js"></script>
+<script src="Enterprise%20Node%20(Exam%20SS%202015)%20%E2%80%93%20INLOOP_files/anchor.js"></script>
+<script src="Enterprise%20Node%20(Exam%20SS%202015)%20%E2%80%93%20INLOOP_files/inloop.js"></script>
+
+
+
+
+</body></html>

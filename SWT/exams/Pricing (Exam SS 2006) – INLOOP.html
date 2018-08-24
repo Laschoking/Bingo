@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pricing (Exam SS 2006) – INLOOP</title>
+  <style class="anchorjs"></style><link rel="stylesheet" type="text/css" href="Pricing%20(Exam%20SS%202006)%20%E2%80%93%20INLOOP_files/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="Pricing%20(Exam%20SS%202006)%20%E2%80%93%20INLOOP_files/bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="Pricing%20(Exam%20SS%202006)%20%E2%80%93%20INLOOP_files/inloop.css">
+  
+  <link rel="stylesheet" type="text/css" href="Pricing%20(Exam%20SS%202006)%20%E2%80%93%20INLOOP_files/syntax.css">
+
+</head>
+<body class="autolink">
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://inloop.inf.tu-dresden.de/">INLOOP</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        
+
+  <li><a href="https://inloop.inf.tu-dresden.de/">Home</a></li>
+  <li><a href="https://inloop.inf.tu-dresden.de/account/profile/">My Profile</a></li>
+  
+  <li><a id="logout-link" href="https://inloop.inf.tu-dresden.de/logout/">Logout</a></li>
+
+
+      </ul>
+    </div>
+    
+
+<form id="logout-form" method="post" action="/logout/">
+  <input name="csrfmiddlewaretoken" value="UfVQIOZYnYBCJ5tVkXafgesswjnEy0nWStKRaNTAVkWjygMm38xxKBWXobKea7lx" type="hidden">
+</form>
+<script src="Pricing%20(Exam%20SS%202006)%20%E2%80%93%20INLOOP_files/logout.js"></script>
+
+
+  </div>
+</nav>
+
+<div class="container">
+
+
+
+
+
+<ol class="breadcrumb">
+  <li><a href="https://inloop.inf.tu-dresden.de/tasks/">Tasks</a></li>
+  <li><a href="https://inloop.inf.tu-dresden.de/tasks/category/exam/">Exam</a></li>
+  <li class="active">Pricing (Exam SS 2006)</li>
+</ol>
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active">
+    <a href="https://inloop.inf.tu-dresden.de/tasks/pricing/">Description</a>
+  </li>
+  <li role="presentation">
+    <a href="https://inloop.inf.tu-dresden.de/solutions/pricing/upload">Manual upload</a>
+  </li>
+  <li role="presentation">
+    <a href="https://inloop.inf.tu-dresden.de/solutions/pricing/">Your solutions</a>
+  </li>
+</ul>
+
+<div class="static-tab-content">
+
+<h1>Pricing (Exam SS 2006)</h1>
+<p>The UML class diagram shown below models a complex pricing logic that
+ allows for various discounts on products. Two basic categories of 
+discounts are available:</p>
+<ul>
+<li>Percentage discount on the catalog price (class <code>PercentageDiscountPricing</code>). The discount percentage to grant is passed to the constructor (0 &lt;= percentage &lt;= 100).</li>
+<li>Absolute discount on the catalog price (class <code>AbsoluteDiscountPricing</code>). Absolute discount is available only for products with a catalog price above a certain minimum price (<code>threshold</code>). The final product price may not fall below this <code>threshold</code> after granting the discount. Both <code>discount</code> and <code>threshold</code> are passed as arguments to the constructor.</li>
+</ul>
+<p>The class <code>Sale</code> represents a certain product an its discounts. Therefore, the catalog price of the product (<code>preDiscountTotal</code>) is stored. The method <code>getTotal()</code> determines the final price of the product after all registered discounts have been applied.
+The actual discount calculation is performed in the method <code>getTotal()</code> of the classes implementing the interface <code>ISalePricing</code>.</p>
+<h2 id="complex-pricing-structures">Complex Pricing Structures<a class="anchorjs-link " href="#complex-pricing-structures" aria-label="Anchor link for: complex pricing structures" data-anchorjs-icon="" style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<p>In general, there are cases in which several discounts can be applied
+ at the same time, e.g. discounts for seniors or other special 
+customers, loyalty bonus, deal of the day. While several discounts may 
+be registered for a <code>Sale</code> object, only one can actually be applied because our pricing logic is very simple. A complex pricing logic (abstract class <code>ComplexPricing</code>) is responsible for selecting the discount to be applied. There are two concrete pricing logic implementations:</p>
+<ul>
+<li>The class <code>BestForCustomerPricing</code> calculates the selling price based on the largest discount for the customer.</li>
+<li>The class <code>BestForStorePricing</code> selects the discount that is best for the vendor (i.e. lowest total discount).</li>
+</ul>
+<p>Before the final price of a product is determined, all discounts to 
+chose from must be known to the selected pricing logic. Different 
+discounts can be created by the static method <code>Sale.createPricing()</code>. The arguments of this method are:</p>
+<ul>
+<li><code>discountType</code>: A value of the enumeration <code>DiscountType</code> that determines whether to use an absolute or percentage discount.</li>
+<li><code>percentage</code>: In case of a percentage discount, this argument specifies the granted percentage. The two remaining arguments should be <code>0</code> in this case.</li>
+<li><code>discount</code> and <code>threshold</code>: In case of an 
+absolute discount these arguments describe the granted discount, as 
+explained above. The percentage argument should be <code>0</code> in this case.</li>
+</ul>
+<p>Finally, the desired pricing logic <code>pricing</code> (<code>BestForCustomerPricing</code> or <code>BestForStorePricing</code>) is being selected using <code>setPricing()</code>.</p>
+<p>To get an idea of how this whole pricing system is used, you can find an exemplary main class in the Resources section.</p>
+<h2 id="class-diagram">Class Diagram<a class="anchorjs-link " href="#class-diagram" aria-label="Anchor link for: class diagram" data-anchorjs-icon="" style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<p><img alt="Class diagram" src="Pricing%20(Exam%20SS%202006)%20%E2%80%93%20INLOOP_files/Pricing_ClassDiagram.png"></p>
+<h2 id="task">Task<a class="anchorjs-link " href="#task" aria-label="Anchor link for: task" data-anchorjs-icon="" style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<p>Implement all classes given in the UML diagram! Do not submit your 
+main class. Use your knowledge about design patterns and identify the 
+patterns used in this model before starting to write actual Java code.</p>
+<h2 id="hints">Hints<a class="anchorjs-link " href="#hints" aria-label="Anchor link for: hints" data-anchorjs-icon="" style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<ul>
+<li>
+<p>The most important erroneous parameter values must be handled properly. Therefore, the parameter value <code>null</code> should result in a <code>NullPointerException</code> while others like empty <code>String</code>s, zero or negative numbers (for prices) that do not make sense should cause an <code>IllegalArgumentException</code>.</p>
+</li>
+<li>
+<p>In the related exam task, all parameters and variables representing money are of type <code>double</code> to keep the task simple. Since <code>double</code> values are too inaccurate for monetary calculations and thus are not used in real world applications, you should use <code>long</code> instead of <code>double</code> (representing the corresponding amount of cents).</p>
+</li>
+</ul>
+<h2 id="resources">Resources<a class="anchorjs-link " href="#resources" aria-label="Anchor link for: resources" data-anchorjs-icon="" style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<ul>
+<li><a href="https://inloop.inf.tu-dresden.de/tasks/pricing/attachments/Pricing_tests.zip">JUnit tests</a></li>
+<li><a href="https://inloop.inf.tu-dresden.de/tasks/pricing/attachments/SaleApp.java">Example main class</a></li>
+<li><a href="https://inloop.inf.tu-dresden.de/tasks/pricing/attachments/st_exam_ss06.pdf">Related exam task</a></li>
+</ul>
+
+</div>
+
+
+</div>
+
+<footer class="footer">
+  <div class="container clearfix">
+    <ul class="list-inline footer-left">
+      <li class="text-muted">
+        © 2018 <a href="https://github.com/st-tu-dresden/inloop">@st-tu-dresden</a>
+      </li>
+    </ul>
+    <ul class="list-inline footer-right">
+
+      <li><a href="https://inloop.inf.tu-dresden.de/about/help/">Help</a></li>
+
+      <li><a href="https://inloop.inf.tu-dresden.de/about/imprint/">Imprint</a></li>
+
+    </ul>
+  </div>
+</footer>
+
+<script src="Pricing%20(Exam%20SS%202006)%20%E2%80%93%20INLOOP_files/jquery.js"></script>
+<script src="Pricing%20(Exam%20SS%202006)%20%E2%80%93%20INLOOP_files/bootstrap.js"></script>
+
+<script src="Pricing%20(Exam%20SS%202006)%20%E2%80%93%20INLOOP_files/prism.js"></script>
+<script src="Pricing%20(Exam%20SS%202006)%20%E2%80%93%20INLOOP_files/prism-java.js"></script>
+<script src="Pricing%20(Exam%20SS%202006)%20%E2%80%93%20INLOOP_files/anchor.js"></script>
+<script src="Pricing%20(Exam%20SS%202006)%20%E2%80%93%20INLOOP_files/inloop.js"></script>
+
+
+
+
+</body></html>

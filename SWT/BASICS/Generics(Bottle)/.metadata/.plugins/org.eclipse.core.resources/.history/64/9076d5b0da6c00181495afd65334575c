@@ -1,0 +1,20 @@
+
+public class Bottle <T>{
+	private T content;
+	
+	public Bottle() {}
+	
+	public boolean isEmpty() {
+		return true;
+		
+	}
+	
+	public void fill(T content) {
+		
+	}
+	
+	public Drink empty(){
+		T.clear;
+		
+	}
+}

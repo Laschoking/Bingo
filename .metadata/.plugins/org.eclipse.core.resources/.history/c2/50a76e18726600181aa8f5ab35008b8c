@@ -1,0 +1,35 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+
+public class Library{
+	ArrayList<Book> bookList = new  ArrayList<Book>();
+
+  public Library(){
+	  System.out.println("new lib and linked list created");
+ }
+
+  public void sortedInsertion(Book newBook) {
+	  bookList.add(newBook);
+	  sort(bookList);	  
+  }
+  public Book searchForIsbn(String isbn) {
+	  int index = binarySearch(bookList,isbn);
+	  if (index >= 0)return bookList[index];
+	  else return null;
+	  
+  }
+  public ArrayList<Book> searchForAuthor(String author) {
+	 int listSize = bookList.size();
+	 ArrayList<Book> authorBooks = new ArrayList<Book>();
+	 int index = 0; 
+	 while(index < listSize) {
+		 if (bookList[index].isequal(author)) {
+			 authorBooks.add(bookList[index]);
+		 }
+		 index++;			 
+		 
+	 }
+	 return authorBooks;
+  }
+}

@@ -1,0 +1,2 @@
+INDEX VERSION 1.130+/home/laschoking/eclipse-workspace/Collections2/.metadata/.plugins/org.eclipse.jdt.core
+2771030388.index

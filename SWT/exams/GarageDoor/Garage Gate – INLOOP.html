@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Garage Gate – INLOOP</title>
+  <style class="anchorjs"></style><link rel="stylesheet" type="text/css" href="Garage%20Gate%20%E2%80%93%20INLOOP_files/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="Garage%20Gate%20%E2%80%93%20INLOOP_files/bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="Garage%20Gate%20%E2%80%93%20INLOOP_files/inloop.css">
+  
+  <link rel="stylesheet" type="text/css" href="Garage%20Gate%20%E2%80%93%20INLOOP_files/syntax.css">
+
+</head>
+<body class="autolink">
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://inloop.inf.tu-dresden.de/">INLOOP</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        
+
+  <li><a href="https://inloop.inf.tu-dresden.de/">Home</a></li>
+  <li><a href="https://inloop.inf.tu-dresden.de/account/profile/">My Profile</a></li>
+  
+  <li><a id="logout-link" href="https://inloop.inf.tu-dresden.de/logout/">Logout</a></li>
+
+
+      </ul>
+    </div>
+    
+
+<form id="logout-form" method="post" action="/logout/">
+  <input name="csrfmiddlewaretoken" value="juzeU8t6Wph6xgJLi9QWl7fU7HBtpTW4hIofm7nIuLCNmr2c1kdePuJpZzY310UF" type="hidden">
+</form>
+<script src="Garage%20Gate%20%E2%80%93%20INLOOP_files/logout.js"></script>
+
+
+  </div>
+</nav>
+
+<div class="container">
+
+
+
+
+
+<ol class="breadcrumb">
+  <li><a href="https://inloop.inf.tu-dresden.de/tasks/">Tasks</a></li>
+  <li><a href="https://inloop.inf.tu-dresden.de/tasks/category/lesson/">Lesson</a></li>
+  <li class="active">Garage Gate</li>
+</ol>
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active">
+    <a href="https://inloop.inf.tu-dresden.de/tasks/garage-gate/">Description</a>
+  </li>
+  <li role="presentation">
+    <a href="https://inloop.inf.tu-dresden.de/solutions/garage-gate/upload">Manual upload</a>
+  </li>
+  <li role="presentation">
+    <a href="https://inloop.inf.tu-dresden.de/solutions/garage-gate/">Your solutions</a>
+  </li>
+</ul>
+
+<div class="static-tab-content">
+
+<h1>Garage Gate</h1>
+<p>A garage door (class <code>GarageDoor</code>) is controlled by a motor driven mechanism. It opens and closes the door.</p>
+<p>To control the garage door, there is a control panel with one button to open the door (<code>openDoor()</code>) and another one to close it (<code>closeDoor()</code>). These buttons can be used at any time. Furthermore, the door is equipped with two end switches. Each of them sends a signal (<code>stopper()</code>) to the control if the opening or closing of the door has been completed.</p>
+<h2 id="door-state-and-the-state-design-pattern">Door State and the State Design Pattern<a class="anchorjs-link " href="#door-state-and-the-state-design-pattern" aria-label="Anchor link for: door state and the state design pattern" data-anchorjs-icon="" style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<p>In the state design pattern, we use an abstract state class (<code>DoorState</code>),
+ which provides the design of all concrete states. The concrete states 
+are represented by concrete classes that are subclasses of the abstract 
+class <code>DoorState</code>. Implement the state pattern the way it was
+ introduced in the lecture. Implement all state classes as private inner
+ classes of the context class (<code>GarageDoor</code>)!</p>
+<p>The state diagram below shows all possible transitions between the concrete states (<code>Closed</code>, <code>Opening</code>, <code>Open</code>, <code>Closing</code>).</p>
+<p><img alt="State Diagram" src="Garage%20Gate%20%E2%80%93%20INLOOP_files/GarageGate_StateDiagram.png"></p>
+<h2 id="class-diagram">Class Diagram<a class="anchorjs-link " href="#class-diagram" aria-label="Anchor link for: class diagram" data-anchorjs-icon="" style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<p>The classes <code>GarageDoor</code> and <code>Motor</code> should be implemented as shown in the class diagram below.</p>
+<p><img alt="Class Diagram" src="Garage%20Gate%20%E2%80%93%20INLOOP_files/GarageGate_ClassDiagram.png"></p>
+<h2 id="task">Task<a class="anchorjs-link " href="#task" aria-label="Anchor link for: task" data-anchorjs-icon="" style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<p>Implement the classes <code>Motor</code> and <code>GarageDoor</code>!</p>
+<h2 id="hints">Hints<a class="anchorjs-link " href="#hints" aria-label="Anchor link for: hints" data-anchorjs-icon="" style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<ul>
+<li>Triggering a state transition that is not defined in the state diagram above should result in an <code>IllegalStateException</code>.</li>
+<li>In a real world scenario, the methods of the class <code>Motor</code>
+ would contain the commands for controlling the motor. Since we do not 
+have a real motor and this is only an example, you can fill them with 
+some status reports printed to the console if you want to.</li>
+</ul>
+<h2 id="resources">Resources<a class="anchorjs-link " href="#resources" aria-label="Anchor link for: resources" data-anchorjs-icon="" style="font: 1em/1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<ul>
+<li><a href="https://inloop.inf.tu-dresden.de/tasks/garage-gate/attachments/GarageGate_tests.zip">JUnit tests</a></li>
+</ul>
+
+</div>
+
+
+</div>
+
+<footer class="footer">
+  <div class="container clearfix">
+    <ul class="list-inline footer-left">
+      <li class="text-muted">
+        © 2018 <a href="https://github.com/st-tu-dresden/inloop">@st-tu-dresden</a>
+      </li>
+    </ul>
+    <ul class="list-inline footer-right">
+
+      <li><a href="https://inloop.inf.tu-dresden.de/about/help/">Help</a></li>
+
+      <li><a href="https://inloop.inf.tu-dresden.de/about/imprint/">Imprint</a></li>
+
+    </ul>
+  </div>
+</footer>
+
+<script src="Garage%20Gate%20%E2%80%93%20INLOOP_files/jquery.js"></script>
+<script src="Garage%20Gate%20%E2%80%93%20INLOOP_files/bootstrap.js"></script>
+
+<script src="Garage%20Gate%20%E2%80%93%20INLOOP_files/prism.js"></script>
+<script src="Garage%20Gate%20%E2%80%93%20INLOOP_files/prism-java.js"></script>
+<script src="Garage%20Gate%20%E2%80%93%20INLOOP_files/anchor.js"></script>
+<script src="Garage%20Gate%20%E2%80%93%20INLOOP_files/inloop.js"></script>
+
+
+
+
+</body></html>
