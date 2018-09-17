@@ -15,7 +15,7 @@
       <file leaf-file-name="Ausbeute.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Ausbeute.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-550">
+            <state relative-caret-position="133">
               <caret line="7" column="78" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="78" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -269,7 +269,7 @@
       <workItem from="1536332626276" duration="1912000" />
       <workItem from="1536404975506" duration="4308000" />
       <workItem from="1536568765974" duration="2443000" />
-      <workItem from="1537190205195" duration="1353000" />
+      <workItem from="1537190205195" duration="1657000" />
     </task>
     <task id="LOCAL-00001" summary="erste version">
       <created>1535083717025</created>
@@ -282,7 +282,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40338000" />
+    <option name="totallyTimeSpent" value="40642000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
@@ -753,7 +753,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Ausbeute.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-550">
+        <state relative-caret-position="133">
           <caret line="7" column="78" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="78" />
           <folding>
             <element signature="imports" expanded="true" />
